@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flashcards</title>
+</head>
+<body>
+    <h1>Flashcards</h1>
+    <a href="{% url 'add_flashcard' %}">Add Flashcard</a>
+    <ul>
+        {% for flashcard in flashcards %}
+            <li>{{ flashcard.question }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
