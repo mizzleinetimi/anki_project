@@ -1,6 +1,5 @@
-import os
-from django.conf import settings
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from flashcards.models import Flashcard
@@ -10,6 +9,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         flashcards = Flashcard.objects.all()
+        
+        if not flashcards.exists():
+            self.stdout.write(self.style.WARNING('No flashcards found. No email sent.'))
+            return
+        
         subject = 'Daily Flashcard Review'
         message_content = 'Here are your flashcards to review:<br><br>'
         for flashcard in flashcards:
@@ -17,7 +21,7 @@ class Command(BaseCommand):
         
         message = Mail(
             from_email=settings.DEFAULT_FROM_EMAIL,
-            to_emails='inetimimizzle@gmail.com',  # Replace with your email or recipient list
+            to_emails='recipient@example.com',  # Replace with your email or recipient list
             subject=subject,
             html_content=message_content
         )
@@ -28,4 +32,3 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(f'Successfully sent email reminders. Status Code: {response.status_code}'))
         except Exception as e:
             self.stdout.write(self.style.ERROR(f'An error occurred: {str(e)}'))
-

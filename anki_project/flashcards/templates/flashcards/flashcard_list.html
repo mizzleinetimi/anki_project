@@ -8,7 +8,12 @@
     <a href="{% url 'add_flashcard' %}">Add Flashcard</a>
     <ul>
         {% for flashcard in flashcards %}
-            <li>{{ flashcard.question }}</li>
+            <li>
+                <strong>Q:</strong> {{ flashcard.question }}<br>
+                <strong>A:</strong> {{ flashcard.answer }}<br>
+                <a href="{% url 'edit_flashcard' flashcard.id %}">Edit</a> | 
+                <a href="{% url 'delete_flashcard' flashcard.id %}">Delete</a>
+            </li>
         {% endfor %}
     </ul>
 </body>
