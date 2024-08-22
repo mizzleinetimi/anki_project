@@ -129,6 +129,5 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'  # This is the string literal "apikey"
-EMAIL_HOST_PASSWORD = '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'  # Replace with your SendGrid API key
 DEFAULT_FROM_EMAIL = 'inetimimizzle1@gmail.com'  # Replace with your email
-SENDGRID_API_KEY = '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'  # Replace with your actual SendGrid API key
+SENDGRID_API_KEY = 'API_KEY'  # Replace with your actual SendGrid API key
